@@ -1,0 +1,48 @@
+h1, h2
+{
+    text-align:center;
+}
+h2
+{
+
+    color:green;
+    font-size:0.9em;
+    margin-bottom:0px;
+}
+.news p
+{
+    background-color:gray;
+    width: 700pX;
+    color: whitesmoke;
+    margin-left: 30%;
+    
+
+    
+}
+.news
+{
+    width:70%;
+    
+    background-color: yellow;
+    
+
+}
+
+a
+{
+    text-decoration: none;
+    color: blue;
+}
+
+.commentaires
+
+{
+    background-color: tomato;
+    text-align: left;
+    width: 500px;
+    border: 5px black solid;
+
+
+
+
+}
