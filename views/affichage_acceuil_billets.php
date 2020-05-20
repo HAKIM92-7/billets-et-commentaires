@@ -5,10 +5,10 @@
 
 <meta charset="utf-8">
 
-      
-<link rel="stylesheet" href="style2.css" />  
 
-    <title>MON BLOG DE NEWS</title> 
+<link rel="stylesheet" href="style2.css" />
+
+    <title>MON BLOG DE NEWS</title>
 
 
 
@@ -22,16 +22,15 @@
 
 <?php
 
-while ($data=$posts->fetch())
-{?>
+while ($data = $posts->fetch()) {?>
 
 <div class="news">
 
 
-<h2> <?php echo ''.$data['titre'] . '     '.$data['date_billet'].'';?>  <h2/>
-<p> <?php echo $data['contenu'];?>  <br/>
+<h2> <?php echo '' . $data['titre'] . '     ' . $data['date_billet'] . ''; ?>  <h2/>
+<p> <?php echo $data['contenu']; ?>  <br/>
 
-<p><a href="billets.php?action=Post&amp;billet=<?php echo $data['id'];?>" title="cliquez"> commentaires </a></p>
+<p><a href="index.php?action=Post&amp;billet=<?php echo $data['id']; ?>" title="cliquez"> commentaires </a></p>
 
 <br/>
 

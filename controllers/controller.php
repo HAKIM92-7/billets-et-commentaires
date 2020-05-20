@@ -1,66 +1,51 @@
-<?php 
+<?php
 
-require_once ('PostManager.php');
-require_once ('CommentManager.php');
-
+require_once 'models/PostManager.php';
+require_once 'models/CommentManager.php';
 
 function listPosts()
+{
+    $postmanager = new PostManager();
 
-{  
-    $postmanager=new PostManager();
+    $posts = $postmanager->getBillets();
 
-    $posts =$postmanager->getBillets();
+    require 'views/affichage_acceuil_billets.php';
 
-    require ('affichage_acceuil_billets.php');
-
-    
 }
 
 function Post()
+{$postmanager = new PostManager();
+    $commentmanager = new CommentManager();
 
-{   $postmanager=new PostManager();
-    $commentmanager=new CommentManager();
+    $post = $postmanager->getBillet($_GET['billet']);
+    $comments = $commentmanager->getcommentaires($_GET['billet']);
 
-
-    $post=$postmanager->getBillet($_GET['billet']);
-    $comments=$commentmanager->getcommentaires($_GET['billet']);
-
-    require('postview.php');
+    require 'views/postview.php';
 
 }
 
-function addComment($postid,$author,$comment)
+function addComment($postid, $author, $comment)
+{
+    $commentmanager = new CommentManager();
 
-{   
-    $commentmanager=new CommentManager();
-    
     $affectedLines = $commentmanager->postComment($postid, $author, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
+    } else {
+        header('Location: index.php?action=Post&billet=' . $postid);
     }
-    else {
-        header('Location: billets.php?action=Post&billet='.$postid);
-    }
-
 
 }
 
-function editcomment ($idpost,$idcomment,$comment)
-
-
+function editcomment($idpost, $idcomment, $comment)
 {
-    $commentmanager= new CommentManager() ; 
+    $commentmanager = new CommentManager();
 
-    $newcomment=$commentmanager->changecomment($idcomment,$comment);
+    $newcomment = $commentmanager->changecomment($idcomment, $comment);
 
-   if ($newcomment===false) {
+    if ($newcomment === false) {
 
-    throw new Exception('Impossible d\'ajouter le commentaire !');}
-else 
-
-{header('Location: billets.php?action=Post&billet='.$idpost);}
-
-
+        throw new Exception('Impossible d\'ajouter le commentaire !');} else {header('Location:index.php?action=Post&billet=' . $idpost);}
 
 }

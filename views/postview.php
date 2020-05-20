@@ -1,4 +1,4 @@
-<?php $title=$post['titre'] ;?>
+<?php $title = $post['titre'];?>
 
 <?php ob_start();?>
 
@@ -13,8 +13,8 @@
 <div class="news">
 
 
-<h2> <?php echo ''.$post['titre'] . '     '.$post['date_billet'].'';?>  <h2/>
-<p> <?php echo $post['contenu'];?>  <br/>
+<h2> <?php echo '' . $post['titre'] . '     ' . $post['date_billet'] . ''; ?>  <h2/>
+<p> <?php echo $post['contenu']; ?>  <br/>
 
 
 <br/>
@@ -26,7 +26,7 @@
 <h2>Commentaires</h2>
 
 
-<form  method="POST" action="billets.php?action=addComment&amp;id=<?= $post['id'] ?>">
+<form  method="POST" action="index.php?action=addComment&amp;id=<?=$post['id']?>">
     <div>
         <label for="author">Auteur</label><br />
         <input type="text" id="author" name="author" />
@@ -44,29 +44,16 @@
 
 <?php
 
+while ($data = $comments->fetch()) {
 
-
-while($data=$comments->fetch())
-{
-    
-    
-     echo $data['auteur'].' : '.$data['date_commentaire'].'<a href=\'editcomment.php?id_comment=' .$data['id'] .'&amp;id_post='.$post['id'].'\'>(Modifier)</a><br/>';
-     echo $data['commentaire'].'<br/>';
-
-
-
-  
+    echo $data['auteur'] . ' : ' . $data['date_commentaire'] . '<a href=\'editcomment.php?id_comment=' . $data['id'] . '&amp;id_post=' . $post['id'] . '\'>(Modifier)</a><br/>';
+    echo $data['commentaire'] . '<br/>';
 
 }
-
-
-
-
-
 
 ?>
 
 
-<?php $content=ob_get_clean();?>
-<?php require('template.php') ?>
+<?php $content = ob_get_clean();?>
+<?php require 'templates/template.php'?>
 
