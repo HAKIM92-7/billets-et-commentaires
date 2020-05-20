@@ -55,5 +55,5 @@ while ($data = $comments->fetch()) {
 
 
 <?php $content = ob_get_clean();?>
-<?php require 'templates/template.php'?>
+<?php require 'template.php'?>
 
